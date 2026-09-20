@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- معلومات SEO لكي يتمكن جوجل من أرشفة الموقع وإظهاره للجمهور -->
-    <title>PDFify | المنصة العربية الأولى لإدارة وتعديل ملفات الـ PDF مجاناً</title>
+    <!-- معلومات SEO -->
+    <title id="metaTitle">PDFify | المنصة العربية الأولى لإدارة وتعديل ملفات الـ PDF مجاناً</title>
     <meta name="description" content="موقع PDFify المجاني يتيح لك دمج، ضغط، تحويل، وتدوير ملفات الـ PDF أونلاين وبسرعة فائقة مع الحفاظ على الخصوصية التامة دون رفع الملفات لسيرفرات خارجية.">
     <meta name="keywords" content="دمج PDF, ضغط PDF, تحويل PDF إلى صور, تعديل ملفات بي دي إف, PDFify, أدوات PDF مجانية">
     
     <!-- أيقونة الموقع الاحترافية (Favicon) -->
     <link rel="icon" type="image/svg+xml" href="https://api.iconify.design/lucide:file-text.svg?color=%234f46e5">
     
-    <!-- Tailwind CSS لتصميم عصري واحترافي -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- مكتبات المعالجة داخل المتصفح -->
     <script src="https://unpkg.com/pdf-lib@1.4.0/dist/pdf-lib.min.js"></script>
@@ -39,10 +39,14 @@
             </div>
         </div>
         <div class="flex items-center gap-3">
-            <span class="text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1.5 rounded-full font-semibold hidden md:inline-block">
+            <!-- زر تبديل اللغة -->
+            <button onclick="toggleLanguage()" id="langBtn" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-full font-bold transition border border-slate-200">
+                English 🌐
+            </button>
+            <span id="secureBadge" class="text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1.5 rounded-full font-semibold hidden md:inline-block">
                 🔒 أمان تام 100%
             </span>
-            <button onclick="showSection('home')" class="text-sm font-bold text-indigo-600 hover:text-indigo-800">الرئيسية</button>
+            <button onclick="showSection('home')" id="homeNavBtn" class="text-sm font-bold text-indigo-600 hover:text-indigo-800">الرئيسية</button>
         </div>
     </header>
 
@@ -52,9 +56,9 @@
         <!-- قسم الرئيسية (قائمة الأدوات) -->
         <div id="homeSection">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">المنصة الاحترافية الأولى</span>
-                <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4">كل ما تحتاجه لملفات الـ PDF في مكان واحد</h2>
-                <p class="text-slate-600 text-lg">أدوات ذكية، مجانية بالكامل، وسريعة بدون الحاجة لتسجيل حساب أو رفع ملفات لسيرفرات خارجية.</p>
+                <span id="badgeTop" class="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">المنصة الاحترافية الأولى</span>
+                <h2 id="mainTitle" class="text-3xl md:text-5xl font-black text-slate-900 mb-4">كل ما تحتاجه لملفات الـ PDF في مكان واحد</h2>
+                <p id="mainDesc" class="text-slate-600 text-lg">أدوات ذكية، مجانية بالكامل، وسريعة بدون الحاجة لتسجيل حساب أو رفع ملفات لسيرفرات خارجية.</p>
             </div>
 
             <!-- شبكة الأدوات -->
@@ -62,82 +66,81 @@
                 <!-- أداة 1: دمج -->
                 <div onclick="openTool('merge')" class="tool-card bg-white p-6 rounded-2xl shadow-sm border border-slate-200 cursor-pointer transition duration-300 hover:shadow-xl hover:border-indigo-300">
                     <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-2xl mb-4 font-bold">📑</div>
-                    <h3 class="text-xl font-bold mb-2">دمج ملفات PDF</h3>
-                    <p class="text-slate-500 text-sm">اجمع عدة ملفات PDF في ملف واحد بترتيبك الخاص وبسهولة تامة.</p>
+                    <h3 id="tool1Title" class="text-xl font-bold mb-2">دمج ملفات PDF</h3>
+                    <p id="tool1Desc" class="text-slate-500 text-sm">اجمع عدة ملفات PDF في ملف واحد بترتيبك الخاص وبسهولة تامة.</p>
                 </div>
 
                 <!-- أداة 2: ضغط -->
                 <div onclick="openTool('compress')" class="tool-card bg-white p-6 rounded-2xl shadow-sm border border-slate-200 cursor-pointer transition duration-300 hover:shadow-xl hover:border-indigo-300">
                     <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 font-bold">📦</div>
-                    <h3 class="text-xl font-bold mb-2">ضغط ملفات PDF</h3>
-                    <p class="text-slate-500 text-sm">قلل حجم ملفات الـ PDF وحافظ على أعلى جودة ممكنة للرؤية.</p>
+                    <h3 id="tool2Title" class="text-xl font-bold mb-2">ضغط ملفات PDF</h3>
+                    <p id="tool2Desc" class="text-slate-500 text-sm">قلل حجم ملفات الـ PDF وحافظ على أعلى جودة ممكنة للرؤية.</p>
                 </div>
 
                 <!-- أداة 3: تحويل لصور -->
                 <div onclick="openTool('toImage')" class="tool-card bg-white p-6 rounded-2xl shadow-sm border border-slate-200 cursor-pointer transition duration-300 hover:shadow-xl hover:border-indigo-300">
                     <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 font-bold">🖼️</div>
-                    <h3 class="text-xl font-bold mb-2">PDF إلى صور (JPG)</h3>
-                    <p class="text-slate-500 text-sm">استخرج صفحات المستند وحولها إلى صور عالية الدقة بضغطة زر.</p>
+                    <h3 id="tool3Title" class="text-xl font-bold mb-2">PDF إلى صور (JPG)</h3>
+                    <p id="tool3Desc" class="text-slate-500 text-sm">استخرج صفحات المستند وحولها إلى صور عالية الدقة بضغطة زر.</p>
                 </div>
 
                 <!-- أداة 4: تدوير -->
                 <div onclick="openTool('rotate')" class="tool-card bg-white p-6 rounded-2xl shadow-sm border border-slate-200 cursor-pointer transition duration-300 hover:shadow-xl hover:border-indigo-300">
                     <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-2xl mb-4 font-bold">🔄</div>
-                    <h3 class="text-xl font-bold mb-2">تدوير صفحات PDF</h3>
-                    <p class="text-slate-500 text-sm">قم بتعديل اتجاه الصفحات المقلوبة (90، 180، أو 270 درجة).</p>
+                    <h3 id="tool4Title" class="text-xl font-bold mb-2">تدوير صفحات PDF</h3>
+                    <p id="tool4Desc" class="text-slate-500 text-sm">قم بتعديل اتجاه الصفحات المقلوبة (90، 180، أو 270 درجة).</p>
                 </div>
 
                 <!-- أداة 5: علامة مائية -->
                 <div onclick="openTool('watermark')" class="tool-card bg-white p-6 rounded-2xl shadow-sm border border-slate-200 cursor-pointer transition duration-300 hover:shadow-xl hover:border-indigo-300">
                     <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-4 font-bold">✍️</div>
-                    <h3 class="text-xl font-bold mb-2">إضافة علامة مائية</h3>
-                    <p class="text-slate-500 text-sm">احمِ مستنداتك بإضافة نص علامة مائية مخصص على كافة الصفحات.</p>
+                    <h3 id="tool5Title" class="text-xl font-bold mb-2">إضافة علامة مائية</h3>
+                    <p id="tool5Desc" class="text-slate-500 text-sm">احمِ مستنداتك بإضافة نص علامة مائية مخصص على كافة الصفحات.</p>
                 </div>
 
                 <!-- قريباً -->
                 <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white p-6 rounded-2xl shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="text-2xl mb-4">🚀</div>
-                        <h3 class="text-xl font-bold mb-2">المزيد قريباً</h3>
-                        <p class="text-slate-300 text-sm">نعمل باستمرار على إضافة أدوات حصرية جديدة مجاناً.</p>
+                        <h3 id="tool6Title" class="text-xl font-bold mb-2">المزيد قريباً</h3>
+                        <p id="tool6Desc" class="text-slate-300 text-sm">نعمل باستمرار على إضافة أدوات حصرية جديدة مجاناً.</p>
                     </div>
-                    <span class="text-xs bg-indigo-500/30 text-indigo-200 px-3 py-1 rounded-full w-fit">مجاني 100%</span>
+                    <span id="freeBadge" class="text-xs bg-indigo-500/30 text-indigo-200 px-3 py-1 rounded-full w-fit">مجاني 100%</span>
                 </div>
             </div>
 
-            <!-- قسم مميزات الموقع (لإعطاء طابع احترافي للزوار) -->
+            <!-- قسم مميزات الموقع -->
             <div class="bg-indigo-50/50 border border-indigo-100 rounded-3xl p-8 mb-12">
-                <h3 class="text-2xl font-bold text-center text-slate-900 mb-8">لماذا يختار الآلاف موقع PDFify؟</h3>
+                <h3 id="whyTitle" class="text-2xl font-bold text-center text-slate-900 mb-8">لماذا يختار الآلاف موقع PDFify؟</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                     <div>
                         <div class="text-3xl mb-2">⚡</div>
-                        <h4 class="font-bold text-lg mb-1">سرعة فائقة</h4>
-                        <p class="text-slate-600 text-sm">تتم كافة العمليات في ثوانٍ معدودة مباشرة على جهازك.</p>
+                        <h4 id="feat1Title" class="font-bold text-lg mb-1">سرعة فائقة</h4>
+                        <p id="feat1Desc" class="text-slate-600 text-sm">تتم كافة العمليات في ثوانٍ معدودة مباشرة على جهازك.</p>
                     </div>
                     <div>
                         <div class="text-3xl mb-2">🛡️</div>
-                        <h4 class="font-bold text-lg mb-1">خصوصية مطلقة</h4>
-                        <p class="text-slate-600 text-sm">ملفاتك لا تغادر جهازك أبداً ولا يتم رفعها لأي سيرفر.</p>
+                        <h4 id="feat2Title" class="font-bold text-lg mb-1">خصوصية مطلقة</h4>
+                        <p id="feat2Desc" class="text-slate-600 text-sm">ملفاتك لا تغادر جهازك أبداً ولا يتم رفعها لأي سيرفر.</p>
                     </div>
                     <div>
                         <div class="text-3xl mb-2">💎</div>
-                        <h4 class="font-bold text-lg mb-1">مجاني بالكامل</h4>
-                        <p class="text-slate-600 text-sm">بدون إعلانات مزعجة وبدون أي رسوم خفية نهائياً.</p>
+                        <h4 id="feat3Title" class="font-bold text-lg mb-1">مجاني بالكامل</h4>
+                        <p id="feat3Desc" class="text-slate-600 text-sm">بدون إعلانات مزعجة وبدون أي رسوم خفية نهائياً.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- قسم العمليات (مخفي افتراضياً ويظهر حسب الأداة المختارة) -->
+        <!-- قسم العمليات -->
         <div id="toolSection" class="hidden bg-white p-8 rounded-3xl shadow-sm border border-slate-200 max-w-2xl mx-auto">
-            <button onclick="showSection('home')" class="text-sm font-bold text-slate-500 hover:text-indigo-600 mb-6 flex items-center gap-1">
+            <button onclick="showSection('home')" id="backBtn" class="text-sm font-bold text-slate-500 hover:text-indigo-600 mb-6 flex items-center gap-1">
                 ← العودة لقائمة الأدوات
             </button>
             
             <h3 id="toolTitle" class="text-2xl font-black text-slate-900 mb-2"></h3>
             <p id="toolDesc" class="text-slate-500 text-sm mb-6"></p>
 
-            <!-- عناصر التحكم -->
             <div id="toolControls" class="space-y-4 mb-6"></div>
 
             <div id="actionArea">
@@ -153,12 +156,104 @@
 
     <!-- الفوتر -->
     <footer class="bg-white border-t border-slate-200 py-6 text-center text-slate-500 text-sm">
-        <p>© 2026 PDFify. صُمم بكل فخر لخدمة المستخدم العربي بأمان وسرعة فائقة.</p>
+        <p id="footerText">© 2026 PDFify. صُمم بكل فخر لخدمة المستخدم العربي بأمان وسرعة فائقة.</p>
     </footer>
 
-    <!-- سكربت التشغيل والمعالجة -->
+    <!-- سكربت اللغات والمعالجة -->
     <script>
+        let currentLang = 'ar';
         let currentActiveTool = '';
+
+        const translations = {
+            ar: {
+                homeNav: 'الرئيسية',
+                secure: '🔒 أمان تام 100%',
+                badgeTop: 'المنصة الاحترافية الأولى',
+                mainTitle: 'كل ما تحتاجه لملفات الـ PDF في مكان واحد',
+                mainDesc: 'أدوات ذكية، مجانية بالكامل، وسريعة بدون الحاجة لتسجيل حساب أو رفع ملفات لسيرفرات خارجية.',
+                t1Title: 'دمج ملفات PDF', t1Desc: 'اجمع عدة ملفات PDF في ملف واحد بترتيبك الخاص وبسهولة تامة.',
+                t2Title: 'ضغط ملفات PDF', t2Desc: 'قلل حجم ملفات الـ PDF وحافظ على أعلى جودة ممكنة للرؤية.',
+                t3Title: 'PDF إلى صور (JPG)', t3Desc: 'استخرج صفحات المستند وحولها إلى صور عالية الدقة بضغطة زر.',
+                t4Title: 'تدوير صفحات PDF', t4Desc: 'قم بتعديل اتجاه الصفحات المقلوبة (90، 180، أو 270 درجة).',
+                t5Title: 'إضافة علامة مائية', t5Desc: 'احمِ مستنداتك بإضافة نص علامة مائية مخصص على كافة الصفحات.',
+                t6Title: 'المزيد قريباً', t6Desc: 'نعمل باستمرار على إضافة أدوات حصرية جديدة مجاناً.',
+                freeBadge: 'مجاني 100%',
+                whyTitle: 'لماذا يختار الآلاف موقع PDFify؟',
+                f1Title: 'سرعة فائقة', f1Desc: 'تتم كافة العمليات في ثوانٍ معدودة مباشرة على جهازك.',
+                f2Title: 'خصوصية مطلقة', f2Desc: 'ملفاتك لا تغادر جهازك أبداً ولا يتم رفعها لأي سيرفر.',
+                f3Title: 'مجاني بالكامل', f3Desc: 'بدون إعلانات مزعجة وبدون أي رسوم خفية نهائياً.',
+                backBtn: '← العودة لقائمة الأدوات',
+                processBtn: 'تنفيذ العملية الآن',
+                footer: '© 2026 PDFify. صُمم بكل فخر لخدمة المستخدم بأمان وسرعة فائقة.'
+            },
+            en: {
+                homeNav: 'Home',
+                secure: '🔒 100% Secure',
+                badgeTop: 'The #1 Pro Platform',
+                mainTitle: 'All your PDF tools in one place',
+                mainDesc: 'Smart, free, and lightning-fast PDF tools directly in your browser without uploading files.',
+                t1Title: 'Merge PDF', t1Desc: 'Combine multiple PDF files into one document easily.',
+                t2Title: 'Compress PDF', t2Desc: 'Reduce PDF file size while maintaining the best possible quality.',
+                t3Title: 'PDF to Images (JPG)', t3Desc: 'Extract pages from your document as high-resolution images.',
+                t4Title: 'Rotate PDF', t4Desc: 'Change the orientation of PDF pages (90, 180, or 270 degrees).',
+                t5Title: 'Add Watermark', t5Desc: 'Protect your documents by adding a custom text watermark.',
+                t6Title: 'More Coming Soon', t6Desc: 'We constantly add new tools for free.',
+                freeBadge: '100% Free',
+                whyTitle: 'Why do thousands choose PDFify?',
+                f1Title: 'Lightning Fast', f1Desc: 'All operations run in seconds right on your device.',
+                f2Title: 'Absolute Privacy', f2Desc: 'Your files never leave your device or get uploaded.',
+                f3Title: 'Completely Free', f3Desc: 'No annoying ads and no hidden fees.',
+                backBtn: '← Back to Tools',
+                processBtn: 'Execute Process Now',
+                footer: '© 2026 PDFify. Proudly designed for secure and fast document management.'
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const htmlRoot = document.getElementById('htmlRoot');
+            const langBtn = document.getElementById('langBtn');
+
+            if(currentLang === 'en') {
+                htmlRoot.setAttribute('dir', 'ltr');
+                htmlRoot.setAttribute('lang', 'en');
+                langBtn.textContent = 'العربية 🌐';
+            } else {
+                htmlRoot.setAttribute('dir', 'rtl');
+                htmlRoot.setAttribute('lang', 'ar');
+                langBtn.textContent = 'English 🌐';
+            }
+
+            const t = translations[currentLang];
+            document.getElementById('homeNavBtn').textContent = t.homeNav;
+            document.getElementById('secureBadge').textContent = t.secure;
+            document.getElementById('badgeTop').textContent = t.badgeTop;
+            document.getElementById('mainTitle').textContent = t.mainTitle;
+            document.getElementById('mainDesc').textContent = t.mainDesc;
+            
+            document.getElementById('tool1Title').textContent = t.t1Title; document.getElementById('tool1Desc').textContent = t.t1Desc;
+            document.getElementById('tool2Title').textContent = t.t2Title; document.getElementById('tool2Desc').textContent = t.t2Desc;
+            document.getElementById('tool3Title').textContent = t.t3Title; document.getElementById('tool3Desc').textContent = t.t3Desc;
+            document.getElementById('tool4Title').textContent = t.t4Title; document.getElementById('tool4Desc').textContent = t.t4Desc;
+            document.getElementById('tool5Title').textContent = t.t5Title; document.getElementById('tool5Desc').textContent = t.t5Desc;
+            document.getElementById('tool6Title').textContent = t.t6Title; document.getElementById('tool6Desc').textContent = t.t6Desc;
+            document.getElementById('freeBadge').textContent = t.freeBadge;
+
+            document.getElementById('whyTitle').textContent = t.whyTitle;
+            document.getElementById('feat1Title').textContent = t.f1Title; document.getElementById('feat1Desc').textContent = t.f1Desc;
+            document.getElementById('feat2Title').textContent = t.f2Title; document.getElementById('feat2Desc').textContent = t.f2Desc;
+            document.getElementById('feat3Title').textContent = t.f3Title; document.getElementById('feat3Desc').textContent = t.f3Desc;
+
+            document.getElementById('backBtn').textContent = t.backBtn;
+            document.getElementById('processBtn').textContent = t.processBtn;
+            document.getElementById('footerText').textContent = t.footer;
+
+            if(!document.getElementById('homeSection').classList.contains('hidden')) {
+                // keep state
+            } else {
+                openTool(currentActiveTool);
+            }
+        }
 
         function showSection(section) {
             if(section === 'home') {
@@ -178,42 +273,43 @@
             const controlsEl = document.getElementById('toolControls');
 
             controlsEl.innerHTML = '';
+            const t = translations[currentLang];
 
             if(toolName === 'merge') {
-                titleEl.textContent = 'دمج ملفات PDF';
-                descEl.textContent = 'اختر ملفين أو أكثر من الـ PDF لدمجهم في ملف واحد مرتب.';
-                controlsEl.innerHTML = `<label class="block text-sm font-semibold text-slate-700 mb-2">اختر ملفات الـ PDF:</label>
+                titleEl.textContent = currentLang === 'ar' ? 'دمج ملفات PDF' : 'Merge PDF Files';
+                descEl.textContent = currentLang === 'ar' ? 'اختر ملفين أو أكثر من الـ PDF لدمجهم في ملف واحد مرتب.' : 'Select two or more PDF files to combine them into one structured file.';
+                controlsEl.innerHTML = `<label class="block text-sm font-semibold text-slate-700 mb-2">${currentLang === 'ar' ? 'اختر ملفات الـ PDF:' : 'Select PDF files:'}</label>
                     <input type="file" id="toolFiles" multiple accept=".pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer border border-slate-200 rounded-xl p-2"/>`;
             } else if(toolName === 'compress') {
-                titleEl.textContent = 'ضغط ملفات PDF';
-                descEl.textContent = 'اختر ملف PDF لتقليص حجمه وتسهيل مشاركته.';
-                controlsEl.innerHTML = `<label class="block text-sm font-semibold text-slate-700 mb-2">اختر ملف الـ PDF:</label>
+                titleEl.textContent = currentLang === 'ar' ? 'ضغط ملفات PDF' : 'Compress PDF Files';
+                descEl.textContent = currentLang === 'ar' ? 'اختر ملف PDF لتقليص حجمه وتسهيل مشاركته.' : 'Select a PDF file to reduce its size and make sharing easier.';
+                controlsEl.innerHTML = `<label class="block text-sm font-semibold text-slate-700 mb-2">${currentLang === 'ar' ? 'اختر ملف الـ PDF:' : 'Select PDF file:'}</label>
                     <input type="file" id="toolFiles" accept=".pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer border border-slate-200 rounded-xl p-2"/>`;
             } else if(toolName === 'toImage') {
-                titleEl.textContent = 'تحويل PDF إلى صور';
-                descEl.textContent = 'سيتم تحويل صفحات الملف إلى صور منفصلة وتحميلها مباشرة.';
-                controlsEl.innerHTML = `<label class="block text-sm font-semibold text-slate-700 mb-2">اختر ملف الـ PDF:</label>
+                titleEl.textContent = currentLang === 'ar' ? 'تحويل PDF إلى صور' : 'Convert PDF to Images';
+                descEl.textContent = currentLang === 'ar' ? 'سيتم تحويل صفحات الملف إلى صور منفصلة وتحميلها مباشرة.' : 'Convert document pages into separate high-res images.';
+                controlsEl.innerHTML = `<label class="block text-sm font-semibold text-slate-700 mb-2">${currentLang === 'ar' ? 'اختر ملف الـ PDF:' : 'Select PDF file:'}</label>
                     <input type="file" id="toolFiles" accept=".pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer border border-slate-200 rounded-xl p-2"/>`;
             } else if(toolName === 'rotate') {
-                titleEl.textContent = 'تدوير صفحات PDF';
-                descEl.textContent = 'قم بتدوير صفحات المستند بالزاوية المطلوبة.';
+                titleEl.textContent = currentLang === 'ar' ? 'تدوير صفحات PDF' : 'Rotate PDF Pages';
+                descEl.textContent = currentLang === 'ar' ? 'قم بتدوير صفحات المستند بالزاوية المطلوبة.' : 'Change the rotation angle of document pages.';
                 controlsEl.innerHTML = `
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">اختر ملف الـ PDF:</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">${currentLang === 'ar' ? 'اختر ملف الـ PDF:' : 'Select PDF file:'}</label>
                     <input type="file" id="toolFiles" accept=".pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer border border-slate-200 rounded-xl p-2 mb-4"/>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">اختر زاوية التدوير:</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">${currentLang === 'ar' ? 'اختر زاوية التدوير:' : 'Select rotation angle:'}</label>
                     <select id="rotateAngle" class="w-full border border-slate-200 rounded-xl p-3 text-sm bg-white">
-                        <option value="90">90 درجة (مع عقارب الساعة)</option>
-                        <option value="180">180 درجة</option>
-                        <option value="270">270 درجة</option>
+                        <option value="90">${currentLang === 'ar' ? '90 درجة (مع عقارب الساعة)' : '90 degrees (Clockwise)'}</option>
+                        <option value="180">180</option>
+                        <option value="270">270</option>
                     </select>`;
             } else if(toolName === 'watermark') {
-                titleEl.textContent = 'إضافة علامة مائية';
-                descEl.textContent = 'اكتب النص الذي تريد إضافته كعلامة مائية على جميع صفحات المستند.';
+                titleEl.textContent = currentLang === 'ar' ? 'إضافة علامة مائية' : 'Add Watermark';
+                descEl.textContent = currentLang === 'ar' ? 'اكتب النص الذي تريد إضافته كعلامة مائية على جميع صفحات المستند.' : 'Type the watermark text you want to apply to all pages.';
                 controlsEl.innerHTML = `
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">اختر ملف الـ PDF:</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">${currentLang === 'ar' ? 'اختر ملف الـ PDF:' : 'Select PDF file:'}</label>
                     <input type="file" id="toolFiles" accept=".pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer border border-slate-200 rounded-xl p-2 mb-4"/>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">نص العلامة المائية:</label>
-                    <input type="text" id="watermarkText" placeholder="مثال: سري وخاص - PDFify" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:outline-indigo-600"/>`;
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">${currentLang === 'ar' ? 'نص العلامة المائية:' : 'Watermark Text:'}</label>
+                    <input type="text" id="watermarkText" placeholder="PDFify Protected" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:outline-indigo-600"/>`;
             }
         }
 
@@ -222,16 +318,16 @@
             const statusDiv = document.getElementById('statusArea');
 
             if (!fileInput || fileInput.files.length === 0) {
-                alert('الرجاء اختيار ملف واحد على الأقل.');
+                alert(currentLang === 'ar' ? 'الرجاء اختيار ملف واحد على الأقل.' : 'Please select at least one file.');
                 return;
             }
 
-            statusDiv.textContent = 'جاري المعالجة الآن، يرجى الانتظار...';
+            statusDiv.textContent = currentLang === 'ar' ? 'جاري المعالجة الآن، يرجى الانتظار...' : 'Processing now, please wait...';
 
             try {
                 if (currentActiveTool === 'merge') {
                     if (fileInput.files.length < 2) {
-                        alert('الرجاء اختيار ملفين على الأقل للدمج.');
+                        alert(currentLang === 'ar' ? 'الرجاء اختيار ملفين على الأقل للدمج.' : 'Please select at least two files to merge.');
                         statusDiv.textContent = '';
                         return;
                     }
@@ -274,7 +370,7 @@
                     downloadFile(resultBytes, `PDFify-${currentActiveTool}.pdf`, 'application/pdf');
                 }
                 else if (currentActiveTool === 'toImage') {
-                    statusDiv.textContent = 'جاري استخراج الصور وتحويلها...';
+                    statusDiv.textContent = currentLang === 'ar' ? 'جاري استخراج الصور وتحويلها...' : 'Extracting and rendering images...';
                     const file = fileInput.files[0];
                     const arrayBuffer = await file.arrayBuffer();
                     
@@ -299,10 +395,10 @@
                     }
                 }
 
-                statusDiv.textContent = 'تمت العملية بنجاح تام وجاري التحميل! 🎉';
+                statusDiv.textContent = currentLang === 'ar' ? 'تمت العملية بنجاح تام وجاري التحميل! 🎉' : 'Operation completed successfully! 🎉';
             } catch (error) {
                 console.error(error);
-                statusDiv.textContent = 'حدث خطأ أثناء المعالجة، تأكد من سلامة الملف.';
+                statusDiv.textContent = currentLang === 'ar' ? 'حدث خطأ أثناء المعالجة، تأكد من سلامة الملف.' : 'An error occurred during processing.';
             }
         }
 
