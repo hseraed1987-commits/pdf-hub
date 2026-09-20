@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDFify | المنصة العالمية المتكاملة لإدارة ملفات الـ PDF</title>
+    
+    <!-- معلومات SEO لكي يتمكن جوجل من أرشفة الموقع وإظهاره للجمهور -->
+    <title>PDFify | المنصة العربية الأولى لإدارة وتعديل ملفات الـ PDF مجاناً</title>
+    <meta name="description" content="موقع PDFify المجاني يتيح لك دمج، ضغط، تحويل، وتدوير ملفات الـ PDF أونلاين وبسرعة فائقة مع الحفاظ على الخصوصية التامة دون رفع الملفات لسيرفرات خارجية.">
+    <meta name="keywords" content="دمج PDF, ضغط PDF, تحويل PDF إلى صور, تعديل ملفات بي دي إف, PDFify, أدوات PDF مجانية">
+    
+    <!-- أيقونة الموقع الاحترافية (Favicon) -->
+    <link rel="icon" type="image/svg+xml" href="https://api.iconify.design/lucide:file-text.svg?color=%234f46e5">
+    
     <!-- Tailwind CSS لتصميم عصري واحترافي -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- مكتبات المعالجة داخل المتصفح -->
@@ -19,13 +27,20 @@
 
     <!-- الهيدر العلوي -->
     <header class="bg-white shadow-sm py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50">
-        <div class="flex items-center gap-2 cursor-pointer" onclick="showSection('home')">
-            <span class="bg-indigo-600 text-white font-black text-xl px-3 py-1 rounded-xl shadow-md">PDF</span>
-            <h1 class="text-2xl font-black text-slate-900 tracking-wide">ify</h1>
+        <div class="flex items-center gap-3 cursor-pointer" onclick="showSection('home')">
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-md shadow-indigo-600/30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-xl font-black text-slate-900 tracking-wide leading-none">PDF<span class="text-indigo-600">ify</span></h1>
+                <span class="text-[10px] text-slate-400 font-semibold tracking-wider">PRO DOC SOLUTIONS</span>
+            </div>
         </div>
         <div class="flex items-center gap-3">
             <span class="text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1.5 rounded-full font-semibold hidden md:inline-block">
-                🔒 أمان تام: المعالجة تتم على جهازك 100%
+                🔒 أمان تام 100%
             </span>
             <button onclick="showSection('home')" class="text-sm font-bold text-indigo-600 hover:text-indigo-800">الرئيسية</button>
         </div>
@@ -37,11 +52,13 @@
         <!-- قسم الرئيسية (قائمة الأدوات) -->
         <div id="homeSection">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4">كل أدوات الـ PDF التي تحتاجها في مكان واحد</h2>
-                <p class="text-slate-600 text-lg">سريعة، مجانية بالكامل، وبدون الحاجة لتسجيل حساب أو رفع ملفات لسيرفرات خارجية.</p>
+                <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">المنصة الاحترافية الأولى</span>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4">كل ما تحتاجه لملفات الـ PDF في مكان واحد</h2>
+                <p class="text-slate-600 text-lg">أدوات ذكية، مجانية بالكامل، وسريعة بدون الحاجة لتسجيل حساب أو رفع ملفات لسيرفرات خارجية.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- شبكة الأدوات -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                 <!-- أداة 1: دمج -->
                 <div onclick="openTool('merge')" class="tool-card bg-white p-6 rounded-2xl shadow-sm border border-slate-200 cursor-pointer transition duration-300 hover:shadow-xl hover:border-indigo-300">
                     <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-2xl mb-4 font-bold">📑</div>
@@ -82,9 +99,31 @@
                     <div>
                         <div class="text-2xl mb-4">🚀</div>
                         <h3 class="text-xl font-bold mb-2">المزيد قريباً</h3>
-                        <p class="text-slate-300 text-sm">نعمل باستمرار على إضافة أدوات جديدة وحصرية مجاناً للمجتمع العربي.</p>
+                        <p class="text-slate-300 text-sm">نعمل باستمرار على إضافة أدوات حصرية جديدة مجاناً.</p>
                     </div>
                     <span class="text-xs bg-indigo-500/30 text-indigo-200 px-3 py-1 rounded-full w-fit">مجاني 100%</span>
+                </div>
+            </div>
+
+            <!-- قسم مميزات الموقع (لإعطاء طابع احترافي للزوار) -->
+            <div class="bg-indigo-50/50 border border-indigo-100 rounded-3xl p-8 mb-12">
+                <h3 class="text-2xl font-bold text-center text-slate-900 mb-8">لماذا يختار الآلاف موقع PDFify؟</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <div class="text-3xl mb-2">⚡</div>
+                        <h4 class="font-bold text-lg mb-1">سرعة فائقة</h4>
+                        <p class="text-slate-600 text-sm">تتم كافة العمليات في ثوانٍ معدودة مباشرة على جهازك.</p>
+                    </div>
+                    <div>
+                        <div class="text-3xl mb-2">🛡️</div>
+                        <h4 class="font-bold text-lg mb-1">خصوصية مطلقة</h4>
+                        <p class="text-slate-600 text-sm">ملفاتك لا تغادر جهازك أبداً ولا يتم رفعها لأي سيرفر.</p>
+                    </div>
+                    <div>
+                        <div class="text-3xl mb-2">💎</div>
+                        <h4 class="font-bold text-lg mb-1">مجاني بالكامل</h4>
+                        <p class="text-slate-600 text-sm">بدون إعلانات مزعجة وبدون أي رسوم خفية نهائياً.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,10 +137,8 @@
             <h3 id="toolTitle" class="text-2xl font-black text-slate-900 mb-2"></h3>
             <p id="toolDesc" class="text-slate-500 text-sm mb-6"></p>
 
-            <!-- عناصر التحكم المتغيرة حسب الأداة -->
-            <div id="toolControls" class="space-y-4 mb-6">
-                <!-- يتم حقن المدخلات برمجياً هنا -->
-            </div>
+            <!-- عناصر التحكم -->
+            <div id="toolControls" class="space-y-4 mb-6"></div>
 
             <div id="actionArea">
                 <button id="processBtn" onclick="executeTool()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-lg shadow-indigo-600/20">
@@ -109,7 +146,6 @@
                 </button>
             </div>
 
-            <!-- شريط وحالة التحميل -->
             <div id="statusArea" class="mt-4 text-center font-semibold text-sm text-indigo-600"></div>
         </div>
 
@@ -117,7 +153,7 @@
 
     <!-- الفوتر -->
     <footer class="bg-white border-t border-slate-200 py-6 text-center text-slate-500 text-sm">
-        <p>© 2026 PDFify. صُمم بكل فخر لينافس المنصات العالمية بأمان وسرعة فائقة.</p>
+        <p>© 2026 PDFify. صُمم بكل فخر لخدمة المستخدم العربي بأمان وسرعة فائقة.</p>
     </footer>
 
     <!-- سكربت التشغيل والمعالجة -->
@@ -234,7 +270,6 @@
                             });
                         }
                     }
-                    // Compress يقوم بإعادة حفظ المستند مع تحسين البنيّة المجردة
                     const resultBytes = await pdfDoc.save();
                     downloadFile(resultBytes, `PDFify-${currentActiveTool}.pdf`, 'application/pdf');
                 }
@@ -243,7 +278,6 @@
                     const file = fileInput.files[0];
                     const arrayBuffer = await file.arrayBuffer();
                     
-                    // استخدام PDF.js لتحويل الصفحات إلى صور
                     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
                     const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
                     const pdfDoc = await loadingTask.promise;
@@ -258,10 +292,9 @@
 
                         await page.render({ canvasContext: context, viewport: viewport }).promise;
                         
-                        const imageUrl = canvas.toDataURL('image/jpeg');
                         const link = document.createElement('a');
-                        link.href = imageUrl;
-                        link.download = `Page-${i}.jpg`;
+                        link.href = canvas.toDataURL('image/jpeg');
+                        link.download = `PDFify-Page-${i}.jpg`;
                         link.click();
                     }
                 }
